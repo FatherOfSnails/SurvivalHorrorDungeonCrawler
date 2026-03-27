@@ -25,36 +25,37 @@ environment = SubResource("Environment_cwf52")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Architecture" type="Node3D" parent="." unique_id=339317839]
+[node name="Geometry" type="Node3D" parent="." unique_id=339317839]
 
-[node name="Ground" type="Node3D" parent="Architecture" unique_id=1711477912]
+[node name="Ground" type="Node3D" parent="Geometry" unique_id=1711477912]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/Ground" unique_id=236194983]
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Ground" unique_id=236194983]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24993896, 0)
 use_collision = true
 size = Vector3(20, 0.5, 20)
 
-[node name="Obstacles" type="Node3D" parent="Architecture" unique_id=755572036]
+[node name="Obstacles" type="Node3D" parent="Geometry" unique_id=755572036]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Architecture/Obstacles" unique_id=1671466750]
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Obstacles" unique_id=1671466750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.7194824, 0)
 use_collision = true
 size = Vector3(1, 1.5610352, 1)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Architecture/Obstacles" unique_id=1911368856]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Geometry/Obstacles" unique_id=1911368856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.813652, -3.5344558)
 use_collision = true
 size = Vector3(1, 1.1023102, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Architecture/Obstacles" unique_id=1868208358]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Obstacles" unique_id=1868208358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7298825, 0.4514115, -0.8557129)
 use_collision = true
 size = Vector3(1, 1, 2.7114258)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Architecture/Obstacles" unique_id=696395865]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry/Obstacles" unique_id=696395865]
 transform = Transform3D(0.64457744, 0, 0.764539, 0, 1, 0, -0.764539, 0, 0.64457744, -1.7298825, 0.4514115, 3.5343032)
 use_collision = true
 size = Vector3(1, 1, 2.7114258)
 
 [node name="Player" parent="." unique_id=167205263 instance=ExtResource("1_fjyey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+mouse_sensitivity = 2.0
