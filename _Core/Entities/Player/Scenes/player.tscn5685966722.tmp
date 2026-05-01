@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b13ao2fhmaa1v"]
 
 [ext_resource type="Script" uid="uid://28aovjry3u3t" path="res://_Core/Entities/Player/Scripts/player.gd" id="1_cy0nk"]
-[ext_resource type="AudioStream" uid="uid://w8u4804s14kh" path="res://07_Step_rock_01.wav" id="2_ja277"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c2p4n"]
 
@@ -66,11 +65,6 @@ _data = {
 &"move_walk": SubResource("Animation_3k3le")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ja277"]
-random_pitch = 1.0293022
-streams_count = 1
-stream_0/stream = ExtResource("2_ja277")
-
 [node name="Player" type="CharacterBody3D" unique_id=167205263]
 script = ExtResource("1_cy0nk")
 mouse_sensitivity = 0.003
@@ -85,7 +79,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="PlayerPOV" unique_id=1055843115]
 cull_mask = 1048573
-far = 100.0
 
 [node name="WorldModel" type="Node3D" parent="." unique_id=1605517683]
 
@@ -97,7 +90,3 @@ mesh = SubResource("CapsuleMesh_ja277")
 libraries/ = SubResource("AnimationLibrary_okdy7")
 autoplay = &"move_idle"
 playback_default_blend_time = 0.5
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=378480425]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6871492, 0)
-stream = SubResource("AudioStreamRandomizer_ja277")

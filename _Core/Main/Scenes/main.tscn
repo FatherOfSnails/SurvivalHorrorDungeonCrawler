@@ -2,8 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bw7g2ewka8xy3" path="res://_Core/Levels/00_Sandbox/Scenes/sandbox.tscn" id="1_lubm7"]
 [ext_resource type="Script" uid="uid://bv8ml3oxs86yo" path="res://_Core/Main/Scripts/main.gd" id="1_ydbxu"]
+[ext_resource type="PackedScene" uid="uid://d3gq8jw0e3uvo" path="res://lowpoly_knight.tscn" id="3_bms5s"]
 
 [node name="Main" type="Node" unique_id=1393432052]
 script = ExtResource("1_ydbxu")
 
 [node name="Sandbox" parent="." unique_id=1257952736 instance=ExtResource("1_lubm7")]
+
+[node name="lowpoly_knight" parent="." unique_id=1743633485 instance=ExtResource("3_bms5s")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.10562801, 6.1035156e-05, -5.5316315)

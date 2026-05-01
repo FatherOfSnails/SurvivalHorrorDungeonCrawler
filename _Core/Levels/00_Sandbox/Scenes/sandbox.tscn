@@ -1,18 +1,119 @@
 [gd_scene format=3 uid="uid://bw7g2ewka8xy3"]
 
+[ext_resource type="Shader" uid="uid://3ibtw05uhhtj" path="res://_Core/Levels/00_Sandbox/Scenes/stylized_sky.gdshader" id="1_cwf52"]
 [ext_resource type="PackedScene" uid="uid://b13ao2fhmaa1v" path="res://_Core/Entities/Player/Scenes/player.tscn" id="1_fjyey"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c2p4n"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cwf52"]
+noise_type = 3
+seed = 77
 
-[sub_resource type="Sky" id="Sky_fjyey"]
-sky_material = SubResource("ProceduralSkyMaterial_c2p4n")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_67l4o"]
+noise = SubResource("FastNoiseLite_cwf52")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la2br"]
+shader = ExtResource("1_cwf52")
+shader_parameter/use_directional_light = false
+shader_parameter/sun_color = Color(1, 0.98333335, 0.9, 1)
+shader_parameter/sun_energy = 15.0
+shader_parameter/cloud_color = Color(0.296, 0.402, 0.521, 1)
+shader_parameter/cloud_density = 5.0
+shader_parameter/cloud_depth = 1.0
+shader_parameter/cloud_sag = 2.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_67l4o")
+shader_parameter/noise_tiling = Vector2(1, 1)
+shader_parameter/wind_speed = Vector2(0.25, 0.25)
+shader_parameter/ground_bottom_color = Color(0.2, 0.169, 0.133, 1)
+shader_parameter/ground_curve = 0.04
+shader_parameter/exposure = 1.0000000475
+
+[sub_resource type="Sky" id="Sky_53tdo"]
+sky_material = SubResource("ShaderMaterial_la2br")
 
 [sub_resource type="Environment" id="Environment_cwf52"]
 background_mode = 2
-sky = SubResource("Sky_fjyey")
-tonemap_mode = 2
+sky = SubResource("Sky_53tdo")
+glow_enabled = true
+glow_bloom = 0.3
+fog_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_sky_affect = 0.0
+
+[sub_resource type="Animation" id="Animation_cwf52"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_67l4o"]
+resource_name = "RGB_sky"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Environment/WorldEnvironment:environment:sky:sky_material:shader_parameter/sun_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.8333334, 0, 1), Color(0.33333325, 1, 0, 1), Color(0, 1, 0.5, 1), Color(0, 0.6666665, 1, 1), Color(0.16666651, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 0.16666698, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_la2br"]
+_data = {
+&"RESET": SubResource("Animation_cwf52"),
+&"RGB_sky": SubResource("Animation_67l4o")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fjyey"]
+viewport_path = NodePath("Mirror/CSGBox3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwf52"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_fjyey")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cwf52"]
+viewport_path = NodePath("Tesseract/CSGBox3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67l4o"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_cwf52")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_la2br"]
+viewport_path = NodePath("Tesseract/CSGBox3D2/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53tdo"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_la2br")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_shumv"]
+viewport_path = NodePath("Tesseract/CSGBox3D3/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efbkx"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_shumv")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_toffi"]
+viewport_path = NodePath("Tesseract/CSGBox3D4/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2iklg"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_toffi")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ny4xh"]
+viewport_path = NodePath("Tesseract/CSGBox3D5/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1p2px"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_ny4xh")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sby17"]
+viewport_path = NodePath("Tesseract/CSGBox3D6/SubViewport2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spvok"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_sby17")
 
 [node name="Sandbox" type="Node3D" unique_id=1257952736]
 
@@ -22,8 +123,10 @@ tonemap_mode = 2
 environment = SubResource("Environment_cwf52")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=1764271866]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.42261818, 0.82139385, 0.38302222, 0, -0.42261818, 0.90630794, 0.9063078, 0.38302216, 0.17860614, 0, 0, 0)
+light_color = Color(1, 0.9843137, 0.9019608, 1)
 shadow_enabled = true
+sky_mode = 1
 
 [node name="Geometry" type="Node3D" parent="." unique_id=339317839]
 
@@ -58,4 +161,97 @@ size = Vector3(1, 1, 2.7114258)
 
 [node name="Player" parent="." unique_id=167205263 instance=ExtResource("1_fjyey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
-mouse_sensitivity = 2.0
+mouse_friction = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=191279585]
+libraries/ = SubResource("AnimationLibrary_la2br")
+autoplay = &"RESET"
+
+[node name="Mirror" type="Node3D" parent="." unique_id=884595980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mirror" unique_id=1286029275]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.5, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_cwf52")
+
+[node name="SubViewport" type="SubViewport" parent="Mirror/CSGBox3D" unique_id=1086441343]
+
+[node name="Camera3D" type="Camera3D" parent="Mirror/CSGBox3D/SubViewport" unique_id=1864633273]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 1.5, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mirror/CSGBox3D" unique_id=342333617]
+size = Vector3(0.99, 1.1, 1.1)
+
+[node name="Tesseract" type="Node3D" parent="." unique_id=456419937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tesseract" unique_id=646406027]
+use_collision = true
+size = Vector3(3, 0.1, 3)
+material = SubResource("StandardMaterial3D_67l4o")
+
+[node name="SubViewport" type="SubViewport" parent="Tesseract/CSGBox3D" unique_id=2034101423]
+
+[node name="Camera3D" type="Camera3D" parent="Tesseract/CSGBox3D/SubViewport" unique_id=1529599700]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tesseract" unique_id=1200497913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5)
+use_collision = true
+size = Vector3(3, 3, 0.1)
+material = SubResource("StandardMaterial3D_53tdo")
+
+[node name="SubViewport" type="SubViewport" parent="Tesseract/CSGBox3D2" unique_id=568759091]
+
+[node name="Camera3D" type="Camera3D" parent="Tesseract/CSGBox3D2/SubViewport" unique_id=2014655623]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, 18.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tesseract" unique_id=2060876225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.5)
+use_collision = true
+size = Vector3(3, 3, 0.1)
+material = SubResource("StandardMaterial3D_efbkx")
+
+[node name="SubViewport" type="SubViewport" parent="Tesseract/CSGBox3D3" unique_id=625585896]
+
+[node name="Camera3D" type="Camera3D" parent="Tesseract/CSGBox3D3/SubViewport" unique_id=1116326897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 21.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tesseract" unique_id=260703356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5101008, 1.4988319, 0)
+use_collision = true
+size = Vector3(0.1, 3, 3)
+material = SubResource("StandardMaterial3D_2iklg")
+
+[node name="SubViewport" type="SubViewport" parent="Tesseract/CSGBox3D4" unique_id=227799963]
+
+[node name="Camera3D" type="Camera3D" parent="Tesseract/CSGBox3D4/SubViewport" unique_id=329714085]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.5, 1.5, 20)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tesseract" unique_id=1653203081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4988322, 1.498832, 0)
+use_collision = true
+size = Vector3(0.1, 3, 3)
+material = SubResource("StandardMaterial3D_1p2px")
+
+[node name="SubViewport" type="SubViewport" parent="Tesseract/CSGBox3D5" unique_id=1383694044]
+
+[node name="Camera3D" type="Camera3D" parent="Tesseract/CSGBox3D5/SubViewport" unique_id=2057209751]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5, 1.5, 20)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tesseract" unique_id=1345505438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0050557, 0)
+use_collision = true
+size = Vector3(3, 0.1, 3)
+material = SubResource("StandardMaterial3D_spvok")
+
+[node name="SubViewport2" type="SubViewport" parent="Tesseract/CSGBox3D6" unique_id=1706511674]
+
+[node name="Camera3D" type="Camera3D" parent="Tesseract/CSGBox3D6/SubViewport2" unique_id=1771731553]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 20)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tesseract" unique_id=156683470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+light_energy = 1.5
