@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bw7g2ewka8xy3" path="res://_Core/Levels/00_Sandbox/Scenes/sandbox.tscn" id="1_lubm7"]
 [ext_resource type="Script" uid="uid://bv8ml3oxs86yo" path="res://_Core/Main/Scripts/main.gd" id="1_ydbxu"]
 [ext_resource type="PackedScene" uid="uid://d3gq8jw0e3uvo" path="res://lowpoly_knight.tscn" id="3_bms5s"]
+[ext_resource type="PackedScene" uid="uid://dfwo3jcxktxc" path="res://enemy_skeleton_lowpoly.tscn" id="4_qsp30"]
+[ext_resource type="PackedScene" uid="uid://w3ilntwjxnbx" path="res://weapons_lowpoly.glb" id="5_un3cd"]
 
 [node name="Main" type="Node" unique_id=1393432052]
 script = ExtResource("1_ydbxu")
@@ -10,4 +12,10 @@ script = ExtResource("1_ydbxu")
 [node name="Sandbox" parent="." unique_id=1257952736 instance=ExtResource("1_lubm7")]
 
 [node name="lowpoly_knight" parent="." unique_id=1743633485 instance=ExtResource("3_bms5s")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.10562801, 6.1035156e-05, -5.5316315)
+transform = Transform3D(-1.1, 0, -9.616505e-08, 0, 1.1, 0, 9.616505e-08, 0, -1.1, -1, 0, -4)
+
+[node name="enemy-skeleton_lowpoly" parent="." unique_id=1013054412 instance=ExtResource("4_qsp30")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -4)
+
+[node name="weapons_lowpoly" parent="." unique_id=749080893 instance=ExtResource("5_un3cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dfwo3jcxktxc"]
+
+[ext_resource type="PackedScene" uid="uid://d3tny18lhhnxo" path="res://enemy-skeleton_lowpoly.glb" id="1_pydoa"]
+[ext_resource type="Texture2D" uid="uid://d13m66r7p2wk2" path="res://enemy-skeleton_lowpoly_palette-pico8.png" id="2_lohrm"]
+[ext_resource type="PackedScene" uid="uid://blitgkpu6pvb6" path="res://sword_01_iron.tscn" id="3_5eq0x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5eq0x"]
+albedo_texture = ExtResource("2_lohrm")
+
+[node name="enemy-skeleton_lowpoly" unique_id=1013054412 instance=ExtResource("1_pydoa")]
+
+[node name="Skeleton3D" parent="EnemySkeleton" parent_id_path=PackedInt32Array(36218458) index="0" unique_id=265314755]
+bones/3/rotation = Quaternion(0.041254, -0.016268, -0.70692, 0.07)
+bones/9/rotation = Quaternion(0.041254, 0.016267, 0.70692, 0.07)
+
+[node name="Mesh" parent="EnemySkeleton/Skeleton3D" index="0" unique_id=354313347]
+surface_material_override/0 = SubResource("StandardMaterial3D_5eq0x")
+
+[node name="sword-01_iron" parent="." index="1" unique_id=378333044 instance=ExtResource("3_5eq0x")]
+transform = Transform3D(-3.029199e-08, 3.029199e-08, 0.69299996, 0.69299996, 1.3241049e-15, 3.029199e-08, 0, 0.69299996, -3.029199e-08, -0.27875525, 1, -0.12722582)
